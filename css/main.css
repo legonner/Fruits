@@ -1,0 +1,81 @@
+:root {
+    --wrapper-background-color: #F5F5F5;
+    --list-background-color: #EE9DAE;
+    --list-item-background-color: #C66277;
+    --list-item-text-wrapper-color: #9C3649;
+    --list-item-text-wrapper-transform-color: #630000;
+    --list-item-text-color: #F6E1E2;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+    margin: 30px auto;
+    max-width: 500px;
+}
+
+.fruit-list {
+    background-color: var(--wrapper-background-color);
+    padding: 15px;
+}
+
+.fruit-list__list {
+    background-color: var(--list-background-color);
+    margin: 0;
+    padding: 12px;
+    list-style-position: inside;
+    color: var(--list-item-text-color);
+}
+
+.fruit-list__item {
+    background-color: var(--list-item-background-color);
+    margin: 8px;
+    padding: 8px 12px;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+}
+
+.fruit-list__text {
+    background-color: var(--list-item-text-wrapper-color);
+    padding: 8px 15px;
+    margin-left: 3px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.fruit-description {
+    display: none;
+    position: absolute;
+    padding: 5px;
+    top: 3px;
+    left: 50%;
+    transform: translateX(-40%);
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+.fruit-list__item:hover .fruit-description {
+    display: block;
+}
+
+.fruit-list__item:hover {
+    transform: scale(1.09);
+}
+
+.fruit-list__item:hover .fruit-list__text {
+    background-color: var(--list-item-text-wrapper-transform-color);
+}
+
+.fruit-list__item.shake {
+    animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
