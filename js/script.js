@@ -1,19 +1,33 @@
 "use strict";
 
-const fruitListItems = document.querySelectorAll(".fruit-list__item");
+document.addEventListener("DOMContentLoaded", function () {
+  const likeButton = document.getElementById("likeButton");
+  const likeCount = document.getElementById("likeCount");
+  let count = 0;
 
-fruitListItems.forEach((item) => {
-    item.addEventListener("mouseenter", function () {
-        this.classList.add("hovered");
-        setTimeout(() => {
-            this.classList.remove("hovered");
-        }, 300);
-    });
+  likeButton.addEventListener("click", function () {
+    count++;
+    likeCount.textContent = count;
+  });
 
-    item.addEventListener("click", function () {
-        this.classList.add("shake");
-        setTimeout(() => {
-            this.classList.remove("shake");
-        }, 400);
-    });
+  const dislikeButton = document.getElementById("dislikeButton");
+
+  dislikeButton.addEventListener("mouseenter", function () {
+    const direction = dislikeButton.getAttribute("data-direction");
+
+    const randomX = Math.random() * 300 - 100;
+    const randomY = Math.random() * 300 - 100;
+
+    dislikeButton.style.transition = "transform 0.5s ease-in-out";
+    dislikeButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
+  });
+
+  dislikeButton.addEventListener("mouseleave", function () {
+    dislikeButton.style.transition = "transform 0.5s ease-in-out";
+    dislikeButton.style.transform = "translate(0, 0)";
+  });
+
+  dislikeButton.addEventListener("transitionend", function () {
+    dislikeButton.style.transition = "none";
+  });
 });
